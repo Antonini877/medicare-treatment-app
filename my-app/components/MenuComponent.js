@@ -12,19 +12,26 @@ export default function MenuComponent(){
 
 
 
+  const closeModal = () => {
+    setShowModal(false)
+  }
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => setShowModal(true)}>
+      <TouchableOpacity onPress={() =>setShowModal(true)}>
+
         <Text style={styles.icon}>☰</Text>
       </TouchableOpacity>
 
       <Modal
         visible={showModal}
         transparent={true}
-        onRequestClose={() => setShowModal(false)}
       >
 
-        <MenuModal></MenuModal>
+        <MenuModal
+          navigation={navigation}
+          closeModal={closeModal}
+        ></MenuModal>
 
 
       </Modal>
