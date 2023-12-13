@@ -41,6 +41,7 @@ export default function MenuComponent(){
 
 const styles = StyleSheet.create({
   container: {
+    marginTop:20,
     marginLeft: 10,
   },
   icon: {

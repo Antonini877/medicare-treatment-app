@@ -9,10 +9,10 @@ export default function MenuModal({navigation, closeModal}){
 
   return (
    <SafeAreaView style={styles.container} >
-     <TouchableOpacity onPress={() =>closeModal()}>
+     <TouchableOpacity  onPress={() =>closeModal()}>
 
-<Text style={styles.icon}>☰</Text>
-</TouchableOpacity>
+      <Text style={styles.icon}>☰</Text>
+    </TouchableOpacity>
     <View style={styles.drawerHeader} >
    
       <Text style={styles.drawerHeaderText} >Medicare</Text>
@@ -20,7 +20,7 @@ export default function MenuModal({navigation, closeModal}){
     <TouchableOpacity
       style={styles.drawerItem}
       onPress={() => {
-        navigation.navigate('Home')
+        navigation.navigate('Register')
       }}
     >
       <Text style={styles.drawerItemText}>Register</Text>
@@ -28,11 +28,11 @@ export default function MenuModal({navigation, closeModal}){
     <TouchableOpacity
       style={styles.drawerItem}
       onPress={() => {
-        navigation.navigate('Details')
+        navigation.navigate('History')
 
       }}
     >
-      <Text style={styles.drawerItemText}>Details</Text>
+      <Text style={styles.drawerItemText}>History</Text>
     </TouchableOpacity>
    </SafeAreaView>
   )
