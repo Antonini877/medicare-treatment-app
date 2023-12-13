@@ -1,7 +1,8 @@
 import React from 'react'
 import  { useEffect, useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native'
+import { View } from 'react-native'
 import {getHistory} from "../services/OccurrencesService"
+import HistoryCard from './HistoryCard'
 
 export default function HistoryRecord(){
     const [historyResults, setHistoryResults] = useState([])
@@ -16,11 +17,12 @@ export default function HistoryRecord(){
     return (
         <View>
           {historyResults.map((record) => (
-            <>
-                <Text>{record.pain}</Text>
-                <Text>{record.description}</Text>
-                <Text>{record.datetime}</Text>
-            </>
+           <HistoryCard
+            pain={record.pain}
+            date={record.date}
+            description={record.description} 
+           >
+           </HistoryCard>
           ))}
         </View>
       )

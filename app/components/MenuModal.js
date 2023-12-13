@@ -9,14 +9,18 @@ export default function MenuModal({navigation, closeModal}){
 
   return (
    <SafeAreaView style={styles.container} >
-     <TouchableOpacity  onPress={() =>closeModal()}>
-
-      <Text style={styles.icon}>☰</Text>
+     
+     
+     <TouchableOpacity  onPress={() =>closeModal()}>  
+    <Text style={styles.icon}>☰</Text>
     </TouchableOpacity>
+    
+    
     <View style={styles.drawerHeader} >
-   
       <Text style={styles.drawerHeaderText} >Medicare</Text>
     </View>
+    
+    
     <TouchableOpacity
       style={styles.drawerItem}
       onPress={() => {
@@ -25,6 +29,7 @@ export default function MenuModal({navigation, closeModal}){
     >
       <Text style={styles.drawerItemText}>Register</Text>
     </TouchableOpacity>
+    
     <TouchableOpacity
       style={styles.drawerItem}
       onPress={() => {
@@ -34,6 +39,18 @@ export default function MenuModal({navigation, closeModal}){
     >
       <Text style={styles.drawerItemText}>History</Text>
     </TouchableOpacity>
+
+
+    <TouchableOpacity
+      style={styles.drawerItem}
+      onPress={() => {
+        navigation.navigate('Analysis')
+      }}
+    >
+      <Text style={styles.drawerItemText}>Analysis</Text>
+    </TouchableOpacity>
+   
+   
    </SafeAreaView>
   )
 }
@@ -61,7 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   icon: {
-    fontSize: 24,
+    fontSize: 40,
     marginLeft: 10
   },
 })

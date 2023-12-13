@@ -1,11 +1,8 @@
-import { StatusBar } from 'expo-status-bar'
 import Login from "./screens/Login"
 import Home from "./screens/Home"
 import Register from './screens/Register'
 import History from './screens/History'
-
-
-import { StyleSheet, Text, View } from 'react-native'
+import Analysis from './screens/Analysis'
 import { NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
@@ -20,6 +17,8 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="History" component={History} />
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Analysis" component={Analysis} />
+
 
         </Stack.Navigator>
       </NavigationContainer>

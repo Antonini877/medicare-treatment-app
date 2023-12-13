@@ -41,11 +41,11 @@ export default function MenuComponent(){
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:20,
+    marginTop:28,
     marginLeft: 10,
   },
   icon: {
-    fontSize: 24,
+    fontSize: 40,
   },
 })
 
