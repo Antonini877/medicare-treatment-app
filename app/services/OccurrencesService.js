@@ -19,7 +19,43 @@ export function getHistory(){
                 "date": Date.now(),
                 "pain": 5,
                 "description": null
-            }
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            {
+                "date": Date.now(),
+                "pain": 5,
+                "description": null
+            },
+            
         ]
     
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import  { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { ScrollView } from 'react-native'
 import {getHistory} from "../services/OccurrencesService"
 import HistoryCard from './HistoryCard'
 
@@ -15,7 +15,7 @@ export default function HistoryRecord(){
 
 
     return (
-        <View>
+        <ScrollView>
           {historyResults.map((record) => (
            <HistoryCard
             pain={record.pain}
@@ -24,7 +24,7 @@ export default function HistoryRecord(){
            >
            </HistoryCard>
           ))}
-        </View>
+        </ScrollView>
       )
 }
 
