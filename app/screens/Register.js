@@ -76,7 +76,7 @@ export default function Register({navigation}){
         />
         <TextInput
             style={styles.input}
-            placeholder="Description"
+            placeholder="Description (optional)"
             value={textInput}
             onChangeText={handleTextChange}
         />

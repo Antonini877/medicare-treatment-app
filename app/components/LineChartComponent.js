@@ -3,21 +3,21 @@ import { View,  StyleSheet, Dimensions  } from 'react-native'
 import { LineChart } from 'react-native-chart-kit'
 
 
-export default function LineChartComponent({Responsedata}){
+export default function LineChartComponent({x, y, chartName, decimalPlaces}){
 
   let data = {
-    labels: Responsedata.map((item)=>item.date),
+    labels: x,
     datasets: [
         {
-            data: Responsedata.map((item)=>item.count)
+            data: y
         }
     ],
-    legend: ["Occurrences quantity per day"]
+    legend: [chartName]
   }
 
   
   return (
-    <View style={styles.cardContainer}>
+    <View >
 
           <LineChart
             data={data}
@@ -26,11 +26,12 @@ export default function LineChartComponent({Responsedata}){
             yAxisLabel={''}
             withInnerLines={false}
             withOuterLines={false}
+            
             chartConfig={{
               backgroundGradientFrom: 'white',
               backgroundGradientTo: 'grey',
               color: (opacity = 2) => `rgba(0, 0, 0, ${opacity})`,
-              
+              decimalPlaces: decimalPlaces
             }}
             style= {{
               borderRadius: 20,

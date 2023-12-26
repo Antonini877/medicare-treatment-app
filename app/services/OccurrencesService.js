@@ -27,7 +27,7 @@ export async function getHistory(apiKey){
 }
 
 export async function getHistoryGrouped(apiKey){
-    const url = 'http://192.168.0.235:5000/api/v1/occurrences/grouped'
+    const url = 'http://192.168.0.235:5000/api/v1/occurrences/grouped/byday'
 
     try {
         let response = await fetch(url, {
