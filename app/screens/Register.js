@@ -1,13 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, TextInput, Button, StyleSheet } from 'react-native'
-import MenuComponent from '../components/MenuComponent'
+import MenuComponent from '../components/menu/MenuComponent'
+import { addOccurrence } from '../services/OccurrencesService'
+import SecureStoreService from '../services/SecureStoreService'
 
-export default function Register(){
+
+export default function Register({navigation}){
   const [numberInput, setNumberInput] = useState('')
   const [textInput, setTextInput] = useState('')
+  const [apiKey, setApiKey] = useState('')
+
+
+  useEffect(() => {
+    const checkLogged = async () => {
+      const apiKey = await SecureStoreService.get('medicare-api-key')
+
+      if(!apiKey)
+        navigation.navigate("Login")
+
+      setApiKey(apiKey)
+
+  }
+
+  checkLogged()
+    
+
+  }, [])
 
   const handleNumberChange = (text) => {
-    // Ensure the input is between 1 and 10
+
     const number = parseInt(text, 10)
     if (!isNaN(number) && number >= 1 && number <= 10) {
       setNumberInput(text)
@@ -18,11 +39,27 @@ export default function Register(){
     setTextInput(text)
   }
 
-  const handleSubmit = () => {
-    // Handle the form submission logic here
-    console.log('Number Input:', numberInput)
-    console.log('Text Input:', textInput)
-    // You can add your logic here, like sending data to a server
+  const handleSubmit = async () => {
+
+    const actualDate = new Date(
+      new Date()
+      .toLocaleString(
+        "br-BR", 
+        {
+          timeZone: "America/Sao_Paulo"
+        }
+        )
+      )
+      
+  const occurrenceData = {
+      'pain':numberInput,
+      'description':textInput,
+      'created': actualDate
+    }
+
+    await addOccurrence(apiKey, occurrenceData)
+
+    navigation.navigate('Home')
   }
 
   return (

@@ -1,67 +1,53 @@
 import React from 'react'
-import { View,  StyleSheet } from 'react-native'
-import { LineChart, Grid, XAxis, YAxis } from 'react-native-svg-charts'
+import { View,  StyleSheet, Dimensions  } from 'react-native'
+import { LineChart } from 'react-native-chart-kit'
 
 
-export default function LineChartComponent ({ data }){
+export default function LineChartComponent({Responsedata}){
+
+  let data = {
+    labels: Responsedata.map((item)=>item.date),
+    datasets: [
+        {
+            data: Responsedata.map((item)=>item.count)
+        }
+    ],
+    legend: ["Occurrences quantity per day"]
+  }
+
+  
   return (
-    <View>
-        <View style={styles.chartView}>
+    <View style={styles.cardContainer}>
 
-        <YAxis
+          <LineChart
             data={data}
-            contentInset={{ top: 20, bottom: 20 }}
-            svg={{
-                fill: 'grey',
-                fontSize: 10,
+            width={Dimensions.get('window').width-30}
+            height={200}
+            yAxisLabel={''}
+            withInnerLines={false}
+            withOuterLines={false}
+            chartConfig={{
+              backgroundGradientFrom: 'white',
+              backgroundGradientTo: 'grey',
+              color: (opacity = 2) => `rgba(0, 0, 0, ${opacity})`,
+              
             }}
-            numberOfTicks={10}
-            formatLabel={(value) => `${value}`}
-        />
-
-
-        <LineChart
-            style={styles.lineChart}
-            data={data}
-            svg={{ stroke: 'rgb(134, 65, 244)' }}
-            contentInset={{ top: 20, bottom: 20 }}
-        >
-                <Grid />
-        </LineChart>
-
-            
-    </View>
-    
-        <XAxis
-            style={styles.xAxis}
-            data={data}
-            formatLabel={(value, index) => index}
-            contentInset={{ left: 10, right: 10 }}
-            svg={{ fontSize: 10, fill: 'black' }}
-        />
+            style= {{
+              borderRadius: 20,
+            }}
+          />
 
     </View>
   )
 }
 
-
 const styles = StyleSheet.create({
-  xAxis:{ 
-    marginHorizontal: -10 ,
-    paddingTop: 0,
-    paddingRight:40,
-    paddingLeft:70
-    },
-  lineChart: { 
+ 
+  cardContainer: {
     flex: 1,
-    marginLeft: 16 
-    },
-  chartView: { 
-    height: 200,
-    flexDirection: 'row',
-    paddingTop: 20,
-    paddingRight:40, 
-    paddingLeft:40  
-},
-  
+   
+  alignItems: 'center',
+  justifyContent: 'center',
+   marginTop:40
+  }
 })

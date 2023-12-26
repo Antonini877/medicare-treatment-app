@@ -1,10 +1,16 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-export default function HistoryCard ({ pain, date, description }){
+export default function HistoryCard ({ pain, datetime, description }){
   return (
     <View style={styles.cardContainer}>
-      <Text style={styles.title}>{date}</Text>
+      <Text style={styles.title}>
+        {
+          new Date(datetime)
+          .toLocaleString("br-BR", {timeZone: "America/Sao_Paulo"})
+          .toString()
+        }
+      </Text>
       <Text style={styles.title}>PAIN: {pain}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>
@@ -13,13 +19,12 @@ export default function HistoryCard ({ pain, date, description }){
 
 
 const styles = StyleSheet.create({
-  container: {
+ 
+  cardContainer: {
     flex: 1,
     backgroundColor: '#f0f0f0',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  cardContainer: {
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 16,

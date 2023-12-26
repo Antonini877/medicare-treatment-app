@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { View, TextInput, Button, StyleSheet } from 'react-native'
-import HistoryRecord from '../components/HistoryRecord'
+import HistoryRecord from '../components/occurrences_history/HistoryRecord'
 
-import MenuComponent from '../components/MenuComponent'
+import MenuComponent from '../components/menu/MenuComponent'
 
 
-export default function History(){
+export default function History({navigation}){
   
 
   return (
-    <View>
+    <View style={{flex :1}}>
         <MenuComponent></MenuComponent>
 
-        <HistoryRecord></HistoryRecord>
+        <HistoryRecord
+          navigation={navigation}
+        ></HistoryRecord>
     </View>
   )
 }

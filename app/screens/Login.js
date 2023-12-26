@@ -1,12 +1,31 @@
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import callLoginApi from '../services/LoginService'
+import SecureStoreService from '../services/SecureStoreService'
 
 export default function Login({navigation}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  function handleLogin() {
-    navigation.navigate("Home")
+  async function handleLogin() {
+    
+    const loginResponse = await callLoginApi(username, password)
+
+    if(!loginResponse)
+        navigation.navigate("Login")
+
+    const apiKey = loginResponse.key
+
+    if (apiKey){
+      
+      await SecureStoreService.set('medicare-api-key', apiKey)
+
+      navigation.navigate("History")
+    
+    }else
+      navigation.navigate("Login")
+    
+    
   }
 
   return (
