@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import MenuComponent from '../components/menu/MenuComponent'
 
 
-export default function Home({navigation}) {
+export default function SuccessCard({navigation}) {
 
   return (
     <View>

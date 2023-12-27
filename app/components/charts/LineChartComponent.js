@@ -42,13 +42,3 @@ export default function LineChartComponent({x, y, chartName, decimalPlaces}){
   )
 }
 
-const styles = StyleSheet.create({
- 
-  cardContainer: {
-    flex: 1,
-   
-  alignItems: 'center',
-  justifyContent: 'center',
-   marginTop:40
-  }
-})

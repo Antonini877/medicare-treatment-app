@@ -1,6 +1,6 @@
 import React from 'react'
 import  { useEffect, useState } from 'react'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, View, ActivityIndicator } from 'react-native'
 import {getHistory} from "../../services/OccurrencesService"
 import HistoryCard from './HistoryCard'
 import SecureStoreService from '../../services/SecureStoreService'
@@ -21,7 +21,7 @@ export default function HistoryRecord({navigation}){
       if(historyResponse){
         setHistoryResults(historyResponse)
       }else
-        navigation.navigate("Login")
+        navigation.navigate('FailCard')
 
   }
 
@@ -43,14 +43,20 @@ export default function HistoryRecord({navigation}){
     return (
 
         <ScrollView >
-          {historyResults.map((record) => (
-           <HistoryCard
-            pain={record.pain}
-            datetime={record.datetime}
-            description={record.description} 
-           >
-           </HistoryCard>
-          ))}
+
+          {historyResults != [] ? (
+            historyResults.map((record) => (
+            <HistoryCard
+              pain={record.pain}
+              datetime={record.datetime}
+              description={record.description} 
+            >
+            </HistoryCard>
+            ))):(
+              <ActivityIndicator size="large" color="#0000ff" />
+            )
+
+          }
         </ScrollView>
         
       )

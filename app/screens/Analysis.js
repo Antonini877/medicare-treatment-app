@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { View, ActivityIndicator, StyleSheet, Text } from 'react-native'
+import { View, ActivityIndicator, StyleSheet, ScrollView } from 'react-native'
 import MenuComponent from '../components/menu/MenuComponent'
-import LineChartComponent from '../components/LineChartComponent'
+import LineChartComponent from '../components/charts/LineChartComponent'
 import SecureStoreService from '../services/SecureStoreService'
 import { useFocusEffect } from '@react-navigation/native'
-import {getHistoryGrouped} from "../services/OccurrencesService"
-
-
+import {getHistoryGrouped, getHistoryGroupedDayPeriod} from "../services/OccurrencesService"
+import TableComponent from '../components/tableComponent'
 
 export default function Analysis({navigation}){
   const [historyGroupedResults, setHistoryGroupedResults] = useState([])
+  const [historyGroupedDayPeriodResults, setHistoryGroupedDayPeriodResults] = useState([])
+
 
   const fetchData = async () => {
     const apiKey = await SecureStoreService.get('medicare-api-key')
@@ -17,18 +18,25 @@ export default function Analysis({navigation}){
     if(!apiKey)
       navigation.navigate("Login")
 
-    const historyResponse = await getHistoryGrouped(apiKey)
+    const [historyResponse, historyResponseDayPeriod] = await Promise.all([
+      getHistoryGrouped(apiKey),
+      getHistoryGroupedDayPeriod(apiKey)
+
+    ])
     
-    if(historyResponse){
+    if(historyResponse && historyResponseDayPeriod){
       setHistoryGroupedResults(historyResponse)
+      setHistoryGroupedDayPeriodResults(historyResponseDayPeriod)
+
     }else
-      navigation.navigate("Login")
+      navigation.navigate('FailCard')
 
   }
 
   useEffect(() => {
     
-  fetchData()
+    fetchData()
+  
   }, [])
 
   useFocusEffect(
@@ -41,17 +49,23 @@ export default function Analysis({navigation}){
     }, [])
   )
 
-
-
-  
-
   return (
-    <View >
+    <View style={{flex:1}}>
     <MenuComponent></MenuComponent>
-    
+    <ScrollView>
+
+    {historyGroupedDayPeriodResults.length > 0 ? (
+     
+
+     <View>
+          <TableComponent data={historyGroupedDayPeriodResults}/>
+     </View>
+   ) : (
+      <></>
+   )}
+
     {historyGroupedResults.length > 0 ? (
         // Display the LineChartComponent once data is available
-
         <View>
           <View style={styles.cardContainerChart1}>
             <LineChartComponent 
@@ -66,7 +80,7 @@ export default function Analysis({navigation}){
 
             <LineChartComponent 
               x={historyGroupedResults.map((item)=>item.date)} 
-              y={historyGroupedResults.map((item)=>item.pain_avg)}
+              y={historyGroupedResults.map((item)=>item.avg_pain)}
               chartName={"Pain average per day"}
               decimalPlaces={1}
             />
@@ -76,12 +90,15 @@ export default function Analysis({navigation}){
          // Display a loading indicator while data is being fetched
          <ActivityIndicator size="large" color="#0000ff" />
       )}
+
+
+ 
+      </ScrollView>
     
     </View>
 
   )
 }
-
 
 
 const styles = StyleSheet.create({
@@ -96,6 +113,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:250
-  }
+    marginTop:15,
+    marginBottom:15
+  },
+  
 })

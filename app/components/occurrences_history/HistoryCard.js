@@ -2,16 +2,14 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 export default function HistoryCard ({ pain, datetime, description }){
+  
+  
+
   return (
     <View style={styles.cardContainer}>
-      <Text style={styles.title}>
-        {
-          new Date(datetime)
-          .toLocaleString("br-BR", {timeZone: "America/Sao_Paulo"})
-          .toString()
-        }
+      <Text style={styles.title}>{datetime}
       </Text>
-      <Text style={styles.title}>PAIN: {pain}</Text>
+      <Text style={styles.title}>Pain: {pain}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>
   )

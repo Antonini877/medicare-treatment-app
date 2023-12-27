@@ -41,25 +41,35 @@ export default function Register({navigation}){
 
   const handleSubmit = async () => {
 
-    const actualDate = new Date(
-      new Date()
-      .toLocaleString(
-        "br-BR", 
-        {
-          timeZone: "America/Sao_Paulo"
-        }
-        )
-      )
+    const timeZone = "America/Sao_Paulo"
+    const actualDate = new Date()
+
+    const year = new Intl.DateTimeFormat("en", { year: "numeric", timeZone }).format(actualDate)
+    const month = new Intl.DateTimeFormat("en", { month: "2-digit", timeZone }).format(actualDate)
+    const day = new Intl.DateTimeFormat("en", { day: "2-digit", timeZone }).format(actualDate)
+    const hours = new Intl.DateTimeFormat("en", { hour: "2-digit", hour12: false, timeZone }).format(actualDate)
+    const minutes = new Intl.DateTimeFormat("en", { minute: "2-digit", timeZone }).format(actualDate)
+    const seconds = new Intl.DateTimeFormat("en", { second: "2-digit", timeZone }).format(actualDate)
+
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+
       
   const occurrenceData = {
       'pain':numberInput,
       'description':textInput,
-      'created': actualDate
+      'created': formattedDate
     }
 
-    await addOccurrence(apiKey, occurrenceData)
+    try{
+      await addOccurrence(apiKey, occurrenceData)
 
-    navigation.navigate('Home')
+      navigation.navigate('SuccessCard')
+
+
+    }catch(e){
+      navigation.navigate('FailCard')
+    }
+
   }
 
   return (

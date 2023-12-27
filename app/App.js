@@ -1,5 +1,6 @@
 import Login from "./screens/Login"
-import Home from "./screens/Home"
+import SuccessCard from "./screens/SuccessCard"
+import FailCard from "./screens/FailCard"
 import Register from './screens/Register'
 import History from './screens/History'
 import Analysis from './screens/Analysis'
@@ -17,11 +18,8 @@ export default function App() {
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Analysis" component={Analysis} />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
-
-
-
-
+          <Stack.Screen name="SuccessCard" component={SuccessCard} />
+          <Stack.Screen name="FailCard" component={FailCard} />
         </Stack.Navigator>
       </NavigationContainer>
     )
