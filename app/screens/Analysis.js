@@ -5,7 +5,7 @@ import LineChartComponent from '../components/charts/LineChartComponent'
 import SecureStoreService from '../services/SecureStoreService'
 import { useFocusEffect } from '@react-navigation/native'
 import {getHistoryGrouped, getHistoryGroupedDayPeriod} from "../services/OccurrencesService"
-import TableComponent from '../components/tableComponent'
+import TableComponent from '../components/TableComponent'
 
 export default function Analysis({navigation}){
   const [historyGroupedResults, setHistoryGroupedResults] = useState([])
