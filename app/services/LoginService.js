@@ -1,6 +1,6 @@
 export default async function callLoginApi(username, password){
     
-    const url = 'http://192.168.0.235:5000/api/v1/users/login'
+    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/users/login'
 
     try {
         let response = await fetch(url, {

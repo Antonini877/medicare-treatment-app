@@ -1,6 +1,6 @@
 
 export async function getHistory(apiKey){
-    const url = 'http://192.168.0.235:5000/api/v1/occurrences'
+    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/occurrences'
 
     try {
         let response = await fetch(url, {
@@ -27,7 +27,7 @@ export async function getHistory(apiKey){
 }
 
 export async function getHistoryGrouped(apiKey){
-    const url = 'http://192.168.0.235:5000/api/v1/occurrences/grouped/byday'
+    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/occurrences/grouped/byday'
 
     try {
         let response = await fetch(url, {
@@ -54,7 +54,7 @@ export async function getHistoryGrouped(apiKey){
 }
 
 export async function getHistoryGroupedDayPeriod(apiKey){
-    const url = 'http://192.168.0.235:5000/api/v1/occurrences/grouped/bydayperiod'
+    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/occurrences/grouped/bydayperiod'
 
     try {
         let response = await fetch(url, {
@@ -81,7 +81,7 @@ export async function getHistoryGroupedDayPeriod(apiKey){
 }
 
 export async function addOccurrence(apiKey, data){
-    const url = 'http://192.168.0.235:5000/api/v1/occurrences'
+    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/occurrences'
     
     var requestData = data
     try {
