@@ -1,5 +1,15 @@
 {
   "expo": {
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
     "entryPoint": "./screens/App.js",
     "name": "medicare-app",
     "slug": "medicare-app",
@@ -22,10 +32,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.antoniopio.medicareapp",
+      "usesCleartextTraffic": true 
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "acba2062-3ac9-4e71-ad4e-44fc61f6deeb"
+      }
     }
   }
 }
