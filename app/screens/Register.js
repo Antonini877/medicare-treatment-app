@@ -7,7 +7,7 @@ import SecureStoreService from '../services/SecureStoreService'
 
 
 export default function Register({navigation}){
-  const [numberInput, setNumberInput] = useState('')
+  const [numberInput, setNumberInput] = useState(null)
   const [textInput, setTextInput] = useState('')
   const [apiKey, setApiKey] = useState('')
 
@@ -29,9 +29,7 @@ export default function Register({navigation}){
   }, [])
 
   const handleNumberChange = (text) => {
-
-    const number = parseInt(text, 10)
-    setNumberInput(number)
+    setNumberInput(text)
   }
 
   const handleTextChange = (text) => {
@@ -52,9 +50,8 @@ export default function Register({navigation}){
 
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 
-      
     const occurrenceData = {
-      'pain':numberInput,
+      'pain': parseInt(numberInput, 10),
       'description':textInput,
       'created': formattedDate
     }
