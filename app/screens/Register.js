@@ -73,12 +73,10 @@ export default function Register({navigation}){
           </View>
           <View style={styles.pickerWrapper}>
         <Picker
-        style={styles.inputPicker}
-        selectedValue={numberInput}
-        onValueChange={handleNumberChange}
-
+          style={styles.inputPicker}
+          selectedValue={numberInput}
+          onValueChange={handleNumberChange}
       >
-        <Picker.Item label="1" value="1" />
         <Picker.Item label="1" value="1" />
         <Picker.Item label="2" value="2" />
         <Picker.Item label="3" value="3" />
