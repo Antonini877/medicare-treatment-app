@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, Button, StyleSheet } from 'react-native'
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native'
+import {Picker} from '@react-native-picker/picker'
 import MenuComponent from '../components/menu/MenuComponent'
 import { addOccurrence } from '../services/OccurrencesService'
 import SecureStoreService from '../services/SecureStoreService'
@@ -30,9 +31,7 @@ export default function Register({navigation}){
   const handleNumberChange = (text) => {
 
     const number = parseInt(text, 10)
-    if (!isNaN(number) && number >= 1 && number <= 10) {
-      setNumberInput(text)
-    }
+    setNumberInput(number)
   }
 
   const handleTextChange = (text) => {
@@ -54,21 +53,17 @@ export default function Register({navigation}){
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 
       
-  const occurrenceData = {
+    const occurrenceData = {
       'pain':numberInput,
       'description':textInput,
       'created': formattedDate
     }
+    const response = await addOccurrence(apiKey, occurrenceData)
 
-    try{
-      await addOccurrence(apiKey, occurrenceData)
-
-      navigation.navigate('SuccessCard')
-
-
-    }catch(e){
+    if(!response)
       navigation.navigate('FailCard')
-    }
+    else
+      navigation.navigate('SuccessCard')
 
   }
 
@@ -76,14 +71,29 @@ export default function Register({navigation}){
     <View>
         <MenuComponent></MenuComponent>
         <View style={styles.container}>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Select Pain Ratio</Text>
+          </View>
+          <View style={styles.pickerWrapper}>
+        <Picker
+        style={styles.inputPicker}
+        selectedValue={numberInput}
+        onValueChange={handleNumberChange}
 
-        <TextInput
-            style={styles.input}
-            placeholder="Pain ratio (1-10)"
-            keyboardType="numeric"
-            value={numberInput}
-            onChangeText={handleNumberChange}
-        />
+      >
+        <Picker.Item label="1" value="1" />
+        <Picker.Item label="1" value="1" />
+        <Picker.Item label="2" value="2" />
+        <Picker.Item label="3" value="3" />
+        <Picker.Item label="4" value="4" />
+        <Picker.Item label="5" value="5" />
+        <Picker.Item label="6" value="6" />
+        <Picker.Item label="7" value="7" />
+        <Picker.Item label="8" value="8" />
+        <Picker.Item label="9" value="9" />
+        <Picker.Item label="10" value="10" />
+      </Picker>
+      </View>
         <TextInput
             style={styles.input}
             placeholder="Description (optional)"
@@ -113,11 +123,34 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         paddingHorizontal: 8,
       },
+      inputPicker: {
+        height: 40,
+        borderColor: 'black',
+        borderWidth: 1,
+        marginBottom: 16,
+        paddingHorizontal: 8,
+      },
       button:{
         backgroundColor: 'blue',
         borderRadius: 5,
         alignItems: 'center',
         flex:1
+      },
+      text: {
+        fontSize: 16,
+        color: 'black',
+        alignContent:'center'
+      },
+      textContainer:{
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      pickerWrapper:{
+          borderColor:'grey',
+          borderWidth: 1,
+          marginTop:10,
+          marginBottom:10
+        
       }
   },
 )

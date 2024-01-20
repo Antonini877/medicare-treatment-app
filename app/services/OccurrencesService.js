@@ -23,7 +23,7 @@ export async function getHistoryGroupedDayPeriod(apiKey){
 }
 
 export async function addOccurrence(apiKey, data){
-    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/occurrences'
+    const url = 'http://servidor-sp.lbertini.com:5000/api/v1/occurrenceSs'
 
     const requestBody = JSON.stringify(data)
 

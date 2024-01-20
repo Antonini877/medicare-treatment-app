@@ -11,8 +11,8 @@ export default function MenuModal({navigation, closeModal}){
    <SafeAreaView style={styles.container} >
      
      
-     <TouchableOpacity  onPress={() =>closeModal()}>  
-    <Text style={styles.icon}>☰</Text>
+    <TouchableOpacity  onPress={() =>closeModal()}>  
+      <Text style={styles.icon}>☰</Text>
     </TouchableOpacity>
     
     
@@ -25,6 +25,7 @@ export default function MenuModal({navigation, closeModal}){
       style={styles.drawerItem}
       onPress={() => {
         navigation.navigate('Register')
+        closeModal()
       }}
     >
       <Text style={styles.drawerItemText}>Register</Text>
@@ -34,6 +35,7 @@ export default function MenuModal({navigation, closeModal}){
       style={styles.drawerItem}
       onPress={() => {
         navigation.navigate('History')
+        closeModal()
 
       }}
     >
@@ -45,6 +47,7 @@ export default function MenuModal({navigation, closeModal}){
       style={styles.drawerItem}
       onPress={() => {
         navigation.navigate('Analysis')
+        closeModal()
       }}
     >
       <Text style={styles.drawerItemText}>Analysis</Text>

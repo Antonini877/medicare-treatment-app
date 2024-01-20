@@ -14,7 +14,7 @@ export default function TableComponent({data}) {
         <View key={index} style={styles.row}>
             <Text style={styles.cell}>{rowData.time_of_day}</Text>
             <Text style={styles.cell}>{rowData.count}</Text>
-            <Text style={styles.cell}>{rowData.avg_pain}</Text>
+            <Text style={styles.cell}>{rowData.avg_pain.toFixed(1)}</Text>
         </View>
       ))}
     </View>

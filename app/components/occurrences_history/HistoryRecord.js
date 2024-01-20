@@ -44,7 +44,7 @@ export default function HistoryRecord({navigation}){
 
         <ScrollView >
 
-          {historyResults != [] ? (
+          {historyResults.length > 0 ? (
             historyResults.map((record) => (
             <HistoryCard
               pain={record.pain}
