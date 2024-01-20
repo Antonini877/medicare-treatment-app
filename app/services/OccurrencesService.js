@@ -27,8 +27,6 @@ export async function addOccurrence(apiKey, data){
 
     const requestBody = JSON.stringify(data)
 
-    console.log(requestBody)
-
     return await requestApi(url, 'POST', requestBody, {'Api-Key':apiKey})
 
 }
