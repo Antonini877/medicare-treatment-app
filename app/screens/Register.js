@@ -50,8 +50,6 @@ export default function Register({navigation}){
 
     const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
 
-    console.log(numberInput)
-
     const occurrenceData = {
       'pain': parseInt(numberInput, 10),
       'description':textInput,
