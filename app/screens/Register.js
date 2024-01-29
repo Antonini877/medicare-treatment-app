@@ -8,7 +8,7 @@ import SecureStoreService from '../services/SecureStoreService'
 
 export default function Register({navigation}){
   const [numberInput, setNumberInput] = useState('1')
-  const [textInput, setTextInput] = useState('')
+  const [textInput, setTextInput] = useState(null)
   const [apiKey, setApiKey] = useState('')
 
 
